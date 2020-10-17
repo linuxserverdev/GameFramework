@@ -1,0 +1,8 @@
+
+add_executable(AsyncFileLoggerPerf AsyncFileLoggerPerf.cc)
+target_link_libraries(AsyncFileLoggerPerf PRIVATE logger pthread share)
+
+add_executable(AsyncFileLoggerTestThreads AsyncFileLoggerTestThreads.cc)
+target_link_libraries(AsyncFileLoggerTestThreads PRIVATE logger pthread)
+
+

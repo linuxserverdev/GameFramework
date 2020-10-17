@@ -1,0 +1,2 @@
+add_executable(ByteBufferTest ByteBufferTest.cc)
+target_link_libraries(ByteBufferTest PRIVATE)

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MgrController.cpp" />
+    <ClCompile Include="PollSet.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Reactor.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcController.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcMsg.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcMsgParser.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcServiceHandler.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Wepoll.c">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerQueue.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgBuffer.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="CoNotifier.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="CoNotification.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EntityEventHandler.h" />
+    <ClInclude Include="MgrController.h" />
+    <ClInclude Include="PollSet.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Reactor.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcController.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcEventHandler.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcMsg.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcMsgParser.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="CSSysIDGroup.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="SSSysIDGroup.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcServiceHandler.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="EpollChannel.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="CoNotification.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Wepoll.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerQueue.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="MsgBuffer.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+    <ClInclude Include="CoNotifier.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Reactor">
+      <UniqueIdentifier>{dd338528-df84-4890-9191-1915c4679991}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

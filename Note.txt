@@ -1,0 +1,2 @@
+将需要用到的Poco库组件(如：Foundation、Net等)加到vs解决方案中，增加生成事件：
+copy /y $(TargetPath) ..\..\Sbin\Win

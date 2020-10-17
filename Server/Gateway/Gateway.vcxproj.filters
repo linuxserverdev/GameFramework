@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GateEngine\GateEngineImpl.cpp">
+      <Filter>GateEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\GateEntity.cpp">
+      <Filter>GateEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\GateEntityDao.cpp">
+      <Filter>GateEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\GateEntityMgr.cpp">
+      <Filter>GateEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GateFrame\GageMain.cpp">
+      <Filter>GateFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="GateFrame\GateServer.cpp">
+      <Filter>GateFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\LoginCfg.cpp">
+      <Filter>GateEngine\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\LoginMgr.cpp">
+      <Filter>GateEngine\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="GateEngine\LoginProto.cpp">
+      <Filter>GateEngine\Login</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GateEngine">
+      <UniqueIdentifier>{088558b4-3176-46c9-9b3d-488a8fb09191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GateFrame">
+      <UniqueIdentifier>{ff657336-b963-435a-9d73-bd5f6d50239a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GateInterface">
+      <UniqueIdentifier>{2d4b6036-b3a6-4c5e-8249-018dc32c1456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GateEngine\Core">
+      <UniqueIdentifier>{6427da3b-2e1f-4c8f-a84c-3df6f31d5185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GateEngine\Login">
+      <UniqueIdentifier>{159e7efa-53e5-4ece-998e-9776f68a53d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GateEngine\GateEngineImpl.h">
+      <Filter>GateEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\GateEntity.h">
+      <Filter>GateEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\GateEntityDao.h">
+      <Filter>GateEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\GateEntityMgr.h">
+      <Filter>GateEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\GateEvent.h">
+      <Filter>GateEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GateFrame\GateServer.h">
+      <Filter>GateFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="GateInterface\GateEngine.h">
+      <Filter>GateInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GateInterface\GateFrame.h">
+      <Filter>GateInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\LoginCfg.h">
+      <Filter>GateEngine\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\LoginCst.h">
+      <Filter>GateEngine\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\LoginMgr.h">
+      <Filter>GateEngine\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="GateEngine\LoginProto.h">
+      <Filter>GateEngine\Login</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

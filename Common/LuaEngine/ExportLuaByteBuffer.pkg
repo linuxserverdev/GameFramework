@@ -1,0 +1,13 @@
+$#include "LuaByteBuffer.h"
+class LuaByteBuffer
+{
+    void pushBool(bool flag);
+    void pushInt(int value);
+    void pushChar(char value);
+    void pushDouble(double value);
+    void pushChars(const char *str);
+    void pushString(const std::string &str);
+    void pushLString(const char *str, int lengh);
+    void pushPbc(const char *str, int lengh);
+    void append(LuaByteBuffer *buf);
+}

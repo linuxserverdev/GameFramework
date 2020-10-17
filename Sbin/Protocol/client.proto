@@ -1,0 +1,9 @@
+message ClientPBSkill
+{
+	optional uint32 id = 1;
+	optional uint32 level = 2;
+	optional uint32 exp = 3;
+	optional uint32 key = 4;
+	optional uint32 cdTime = 5;
+	optional uint32 key2 = 6;
+}

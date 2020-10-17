@@ -1,0 +1,10 @@
+format pattern : {local time} - {thread id(SYS_gettid)} - {log level} - {log msg} - {source file name:source file line}
+20201015 21:03:27.968000 62444 INFO  start async file logger - FileSize:20M LogBaseName:GatewayServer LogExtName:.log LogLevel:debug LogPath:../Log/Gateway  - H:\download\code\GameFramework\Server\Gateway\GateFrame\GateServer.cpp:61
+20201015 21:03:27.968000 62444 INFO  reg SysID:0 - H:\download\code\GameFramework\Common\Share\RpcController.cpp:8
+format pattern : {local time} - {thread id(SYS_gettid)} - {log level} - {log msg} - {source file name:source file line}
+20201015 21:17:55.840000 58148 INFO  start async file logger - FileSize:20M LogBaseName:GatewayServer LogExtName:.log LogLevel:debug LogPath:../Log/Gateway  - H:\download\code\GameFramework\Server\Gateway\GateFrame\GateServer.cpp:61
+20201015 21:17:55.840000 58148 INFO  reg SysID:0 - H:\download\code\GameFramework\Common\Share\RpcController.cpp:8
+format pattern : {local time} - {thread id(SYS_gettid)} - {log level} - {log msg} - {source file name:source file line}
+20201015 21:23:04.828000 11108 INFO  start async file logger - FileSize:20M LogBaseName:GatewayServer LogExtName:.log LogLevel:debug LogPath:../Log/Gateway  - H:\download\code\GameFramework\Server\Gateway\GateFrame\GateServer.cpp:61
+20201015 21:23:04.829000 11108 INFO  reg SysID:0 - H:\download\code\GameFramework\Common\Share\RpcController.cpp:8
+20201015 21:27:22.299000 11108 INFO  RPC_CLIENT new connection -> 127.0.0.1:12565 - H:\download\code\GameFramework\Common\Share\RpcServiceHandler.h:102
