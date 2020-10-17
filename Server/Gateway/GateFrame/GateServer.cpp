@@ -155,11 +155,8 @@ void GatewayServer::runGateway(std::map<std::string, std::map<std::string, std::
 		}
 	}
 
-	_thread.start(_reactor);
-
-	RpcController::getIns().run();
-
-	_reactor.stop();
+	_thread.start(RpcController::getIns());
+	_reactor.run();
 	_thread.join();
 }
 

@@ -14,6 +14,7 @@ int64_t howMuchTimeFromNow(const TimePoint &when)
     }
     return microSeconds / 1000;
 }
+
 void TimerQueue::processTimers()
 {
     reactor_->assertInLoopThread();
@@ -69,28 +70,13 @@ void TimerQueue::addTimerInLoop(const TimerPtr &timer)
 {
     reactor_->assertInLoopThread();
     timerIdSet_.insert(timer->id());
-    if (insert(timer))
-    {
-    }
+	timers_.push(timer);
+	// std::cout<<"after push new timer:"<<timer->when().microSecondsSinceEpoch()/1000000<<std::endl;
 }
 
 void TimerQueue::invalidateTimer(TimerId id)
 {
     reactor_->runInLoop([this, id]() { timerIdSet_.erase(id); });
-}
-
-bool TimerQueue::insert(const TimerPtr &timerPtr)
-{
-    reactor_->assertInLoopThread();
-    bool earliestChanged = false;
-    if (timers_.size() == 0 || *timerPtr < *timers_.top())
-    {
-        earliestChanged = true;
-    }
-    timers_.push(timerPtr);
-    // std::cout<<"after push new
-    // timer:"<<timerPtr->when().microSecondsSinceEpoch()/1000000<<std::endl;
-    return earliestChanged;
 }
 
 int64_t TimerQueue::getTimeout() const
@@ -132,7 +118,7 @@ void TimerQueue::reset(const std::vector<TimerPtr>& expired,
             timerIdSet_.find(timerPtr->id()) != timerIdSet_.end())
         {
             timerPtr->restart(now);
-            insert(timerPtr);
+            timers_.push(timerPtr);
         }
     }
 }

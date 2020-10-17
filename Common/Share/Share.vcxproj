@@ -45,7 +45,6 @@
     <ClInclude Include="CoNotifier.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="EntityEventHandler.h" />
-    <ClInclude Include="EpollChannel.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="MgrController.h" />
     <ClInclude Include="MsgBuffer.h" />

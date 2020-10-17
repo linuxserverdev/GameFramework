@@ -111,23 +111,6 @@ public:
 	/// The reactor will be stopped when the next event
 	/// (including a timeout event) occurs.
 
-	void wakeUp();
-	/// Wakes up idle reactor.
-
-	void setTimeout(const Poco::Timespan& timeout);
-	/// Sets the timeout. 
-	///
-	/// If no other event occurs for the given timeout 
-	/// interval, a timeout event is sent to all event listeners.
-	///
-	/// The default timeout is 250 milliseconds;
-	///
-	/// The timeout is passed to the Socket::select()
-	/// method.
-
-	const Poco::Timespan& getTimeout() const;
-	/// Returns the timeout.
-
 	void addEventHandler(const Socket& socket, const Poco::AbstractObserver& observer);
 	/// Registers an event handler with the Reactor.
 	///
@@ -151,8 +134,6 @@ public:
 
 	void runInLoop(const Func& cb);
 	void runInLoop(Func&& cb);
-	void queueInLoop(const Func& cb);
-	void queueInLoop(Func&& cb);
 
 	TimerId runAt(const Date& time, const Func& cb);
 	TimerId runAt(const Date& time, Func&& cb);
@@ -232,8 +213,6 @@ private:
 	NotificationPtr             _pShutdownNotification;
 	MpscQueue<Func>             _funcs;
 	std::unique_ptr<TimerQueue> _timerQueue;
-	MutexType                   _mutex;
-	Poco::Thread*               _pThread;
 	Poco::Thread::TID           _threadId;
 
 	friend class CoNotifier;

@@ -38,6 +38,12 @@
     <ClCompile Include="CoNotification.cpp">
       <Filter>Reactor</Filter>
     </ClCompile>
+    <ClCompile Include="ByteBuffer.cpp" />
+    <ClCompile Include="CommonException.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="PerfTool.cpp" />
+    <ClCompile Include="Utils..cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityEventHandler.h" />
@@ -69,9 +75,6 @@
     <ClInclude Include="RpcServiceHandler.h">
       <Filter>Reactor</Filter>
     </ClInclude>
-    <ClInclude Include="EpollChannel.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
     <ClInclude Include="CoNotification.h">
       <Filter>Reactor</Filter>
     </ClInclude>
@@ -90,6 +93,12 @@
     <ClInclude Include="CoNotifier.h">
       <Filter>Reactor</Filter>
     </ClInclude>
+    <ClInclude Include="ByteBuffer.h" />
+    <ClInclude Include="CommonException.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="PerfTool.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Reactor">

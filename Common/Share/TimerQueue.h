@@ -37,7 +37,6 @@ class TimerQueue : NonCopyable
     Reactor* reactor_;
     std::priority_queue<TimerPtr, std::vector<TimerPtr>, comp> timers_;
 
-    bool insert(const TimerPtr &timePtr);
     void reset(const std::vector<TimerPtr> &expired, const TimePoint &now);
     std::vector<TimerPtr> getExpired(const TimePoint &now);
 
