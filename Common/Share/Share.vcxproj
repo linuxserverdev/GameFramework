@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ByteBuffer.cpp" />
     <ClCompile Include="CommonException.cpp" />
     <ClCompile Include="CoNotification.cpp" />
     <ClCompile Include="CoNotificationCenter.cpp" />
@@ -41,7 +40,6 @@
     <ClCompile Include="Wepoll.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ByteBuffer.h" />
     <ClInclude Include="CommonException.h" />
     <ClInclude Include="CoNotificationCenter.h" />
     <ClInclude Include="CoNotifier.h" />

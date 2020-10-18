@@ -8,18 +8,6 @@
     <ClCompile Include="Reactor.cpp">
       <Filter>Reactor</Filter>
     </ClCompile>
-    <ClCompile Include="RpcController.cpp">
-      <Filter>Reactor</Filter>
-    </ClCompile>
-    <ClCompile Include="RpcMsg.cpp">
-      <Filter>Reactor</Filter>
-    </ClCompile>
-    <ClCompile Include="RpcMsgParser.cpp">
-      <Filter>Reactor</Filter>
-    </ClCompile>
-    <ClCompile Include="RpcServiceHandler.cpp">
-      <Filter>Reactor</Filter>
-    </ClCompile>
     <ClCompile Include="Wepoll.c">
       <Filter>Reactor</Filter>
     </ClCompile>
@@ -29,16 +17,12 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Reactor</Filter>
     </ClCompile>
-    <ClCompile Include="MsgBuffer.cpp">
-      <Filter>Reactor</Filter>
-    </ClCompile>
     <ClCompile Include="CoNotifier.cpp">
       <Filter>Reactor</Filter>
     </ClCompile>
     <ClCompile Include="CoNotification.cpp">
       <Filter>Reactor</Filter>
     </ClCompile>
-    <ClCompile Include="ByteBuffer.cpp" />
     <ClCompile Include="CommonException.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -46,6 +30,21 @@
     <ClCompile Include="Utils..cpp" />
     <ClCompile Include="CoNotificationCenter.cpp">
       <Filter>Reactor</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgBuffer.cpp">
+      <Filter>Rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcController.cpp">
+      <Filter>Rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcMsg.cpp">
+      <Filter>Rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcMsgParser.cpp">
+      <Filter>Rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcServiceHandler.cpp">
+      <Filter>Rpc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,27 +54,6 @@
       <Filter>Reactor</Filter>
     </ClInclude>
     <ClInclude Include="Reactor.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcController.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcEventHandler.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcMsg.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcMsgParser.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="CSSysIDGroup.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="SSSysIDGroup.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
-    <ClInclude Include="RpcServiceHandler.h">
       <Filter>Reactor</Filter>
     </ClInclude>
     <ClInclude Include="CoNotification.h">
@@ -90,13 +68,9 @@
     <ClInclude Include="Timer.h">
       <Filter>Reactor</Filter>
     </ClInclude>
-    <ClInclude Include="MsgBuffer.h">
-      <Filter>Reactor</Filter>
-    </ClInclude>
     <ClInclude Include="CoNotifier.h">
       <Filter>Reactor</Filter>
     </ClInclude>
-    <ClInclude Include="ByteBuffer.h" />
     <ClInclude Include="CommonException.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="FileSystem.h" />
@@ -105,10 +79,37 @@
     <ClInclude Include="CoNotificationCenter.h">
       <Filter>Reactor</Filter>
     </ClInclude>
+    <ClInclude Include="MsgBuffer.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcController.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcEventHandler.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcMsg.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcMsgParser.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcServiceHandler.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="SSSysIDGroup.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="CSSysIDGroup.h">
+      <Filter>Rpc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Reactor">
       <UniqueIdentifier>{dd338528-df84-4890-9191-1915c4679991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rpc">
+      <UniqueIdentifier>{c4a46139-2eff-4844-81b8-ba5512e6b10c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
