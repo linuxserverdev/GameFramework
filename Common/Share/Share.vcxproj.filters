@@ -44,6 +44,9 @@
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="PerfTool.cpp" />
     <ClCompile Include="Utils..cpp" />
+    <ClCompile Include="CoNotificationCenter.cpp">
+      <Filter>Reactor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityEventHandler.h" />
@@ -99,6 +102,9 @@
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="PerfTool.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="CoNotificationCenter.h">
+      <Filter>Reactor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Reactor">

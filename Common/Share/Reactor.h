@@ -111,6 +111,8 @@ public:
 	/// The reactor will be stopped when the next event
 	/// (including a timeout event) occurs.
 
+	static Reactor* getEventLoopOfCurrentThread();
+
 	void addEventHandler(const Socket& socket, const Poco::AbstractObserver& observer);
 	/// Registers an event handler with the Reactor.
 	///
@@ -128,12 +130,16 @@ public:
 	///     Poco::Observer<MyEventHandler, SocketNotification> obs(*this, &MyEventHandler::handleMyEvent);
 	///     reactor.removeEventHandler(obs);
 
+	bool has(const Socket& socket) const;
+	/// Returns true if socket is registered with this rector.
 
-	void abortNotInLoopThread();
-	void assertInLoopThread();
+	void assertInLoopThread() const;
 
 	void runInLoop(const Func& cb);
 	void runInLoop(Func&& cb);
+
+	void queueInLoop(const Func& f);
+	void queueInLoop(Func&& f);
 
 	TimerId runAt(const Date& time, const Func& cb);
 	TimerId runAt(const Date& time, Func&& cb);
@@ -142,11 +148,9 @@ public:
 	TimerId runEvery(double interval, const Func& cb);
 	TimerId runEvery(double interval, Func&& cb);
 	void invalidateTimer(TimerId id);
-	void doRunInLoopFuncs();
-
-	bool has(const Socket& socket) const;
-	/// Returns true if socket is registered with this rector.
-
+	
+	
+	bool isRunning();
 	bool isInLoopThread() const;
 
 protected:
@@ -192,6 +196,10 @@ private:
 	typedef Poco::FastMutex                   MutexType;
 	typedef MutexType::ScopedLock             ScopedLock;
 
+	void wakeup();
+	void doRunInLoopFuncs();
+	void abortNotInLoopThread() const;
+
 	bool hasSocketHandlers();
 	void dispatch(NotifierPtr& pNotifier, CoNotification* pNotification);
 	NotifierPtr getNotifier(const Socket& socket, bool makeNew = false);
@@ -202,6 +210,7 @@ private:
 	};
 
 	std::atomic<bool>           _stop;
+	bool                        _looping;
 	Poco::Timespan              _timeout;
 	EventHandlerMap             _handlers;
 	PollSet                     _pollSet;

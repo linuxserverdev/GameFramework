@@ -137,7 +137,6 @@ public:
 	{
 		pNotification->release();
 		StreamSocket sock = _socket.acceptConnection();
-		_pReactor->wakeUp();
 		createServiceHandler(sock);
 	}
 
@@ -328,7 +327,7 @@ protected:
 		///
 		/// Subclasses can override this method.
 	{
-		LOG_ERROR << RpcMsgPacket::getRpcTypeString(_type) << " connect err, errorCode = " << errorCode;
+		LOG_ERROR << RpcMsgPacket::getRpcTypeString(_type) << " connect err, " << strerror_tl(errorCode);
 	}
 
 	Reactor* reactor()

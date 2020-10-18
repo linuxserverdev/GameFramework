@@ -1,4 +1,5 @@
 #include "Share/PollSet.h"
+#include "Logger/Logger.h"
 #include "Poco/Net/SocketImpl.h"
 #include "Poco/Mutex.h"
 #include <set>
@@ -207,8 +208,21 @@ public:
 						if (ret < 0)
 							LOG_SYSERR << "wakeup read error";
 				}
+
+#else
+				if (_events[i].events == EPOLLEVENT)
+				{
+					LOG_CASSERT(_events[i].data.u64 == 1);
+					continue;
+				}
 #endif
+
 			}
+		}
+
+		if (rc > 0 && static_cast<size_t>(rc) == _events.size())
+		{
+			_events.resize(_events.size() * 2);
 		}
 
 		return result;
@@ -248,6 +262,7 @@ private:
 		epoll_close(_epollfd);
 #else
 		close(_epollfd);
+		close(_wakeupFd);
 #endif
 	}
 private:

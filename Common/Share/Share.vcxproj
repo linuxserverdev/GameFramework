@@ -22,6 +22,7 @@
     <ClCompile Include="ByteBuffer.cpp" />
     <ClCompile Include="CommonException.cpp" />
     <ClCompile Include="CoNotification.cpp" />
+    <ClCompile Include="CoNotificationCenter.cpp" />
     <ClCompile Include="CoNotifier.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="ByteBuffer.h" />
     <ClInclude Include="CommonException.h" />
+    <ClInclude Include="CoNotificationCenter.h" />
     <ClInclude Include="CoNotifier.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="EntityEventHandler.h" />

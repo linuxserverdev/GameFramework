@@ -16,7 +16,6 @@ CoNotifier::~CoNotifier()
 void CoNotifier::addObserver(Reactor* pReactor, const Poco::AbstractObserver& observer)
 {
 	_nc.addObserver(observer);
-	ScopedLock l(_mutex);
 	if (observer.accepts(pReactor->_pReadableNotification))
 		_events.insert(pReactor->_pReadableNotification.get());
 	else if (observer.accepts(pReactor->_pWritableNotification))
@@ -31,7 +30,6 @@ void CoNotifier::addObserver(Reactor* pReactor, const Poco::AbstractObserver& ob
 void CoNotifier::removeObserver(Reactor* pReactor, const Poco::AbstractObserver& observer)
 {
 	_nc.removeObserver(observer);
-	ScopedLock l(_mutex);
 	EventSet::iterator it = _events.end();
 	if (observer.accepts(pReactor->_pReadableNotification))
 		it = _events.find(pReactor->_pReadableNotification.get());

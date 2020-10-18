@@ -1,9 +1,9 @@
 #pragma once
+#include "Share/CoNotificationCenter.h"
 
 #include "Poco/Net/Net.h"
 #include "Poco/Net/Socket.h"
 #include "Poco/RefCountedObject.h"
-#include "Poco/NotificationCenter.h"
 #include "Poco/Observer.h"
 #include <set>
 
@@ -48,13 +48,10 @@ protected:
 
 private:
 	typedef std::multiset<CoNotification*>     EventSet;
-	typedef Poco::FastMutex                    MutexType;
-	typedef MutexType::ScopedLock              ScopedLock;
 
 	EventSet                 _events;
-	Poco::NotificationCenter _nc;
+	CoNotificationCenter     _nc;
 	Socket                   _socket;
-	MutexType                _mutex;
 };
 
 
@@ -63,7 +60,6 @@ private:
 //
 inline bool CoNotifier::accepts(CoNotification* pNotification)
 {
-	ScopedLock l(_mutex);
 	return _events.find(pNotification) != _events.end();
 }
 

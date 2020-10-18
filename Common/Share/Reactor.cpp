@@ -7,8 +7,11 @@
 using Poco::Exception;
 using Poco::ErrorHandler;
 
+thread_local Reactor* t_loopInThisThread = nullptr;
+
 Reactor::Reactor() :
 	_stop(false),
+	_looping(false),
 	_timeout(DEFAULT_TIMEOUT),
 	_pReadableNotification(new ReadableNotification(this)),
 	_pWritableNotification(new WritableNotification(this)),
@@ -19,10 +22,17 @@ Reactor::Reactor() :
 	_timerQueue(new TimerQueue(this)),
 	_threadId(Thread::currentTid())
 {
+	if (t_loopInThisThread)
+	{
+		LOG_FATAL << "There is already an EventLoop in this thread";
+		exit(-1);
+	}
+	t_loopInThisThread = this;
 }
 
 Reactor::Reactor(const Poco::Timespan& timeout) :
 	_stop(false),
+	_looping(false),
 	_timeout(timeout),
 	_pReadableNotification(new ReadableNotification(this)),
 	_pWritableNotification(new WritableNotification(this)),
@@ -33,14 +43,26 @@ Reactor::Reactor(const Poco::Timespan& timeout) :
 	_timerQueue(new TimerQueue(this)),
 	_threadId(Thread::currentTid())
 {
+	if (t_loopInThisThread)
+	{
+		LOG_FATAL << "There is already an EventLoop in this thread";
+		exit(-1);
+	}
+	t_loopInThisThread = this;
 }
 
 Reactor::~Reactor()
 {
+	t_loopInThisThread = nullptr;
 }
 
 void Reactor::run()
 {
+	if (_looping) return;
+
+	assertInLoopThread();
+	_looping = true;
+
 	while (!_stop)
 	{
 		try
@@ -78,10 +100,12 @@ void Reactor::run()
 		}
 	}
 	onShutdown();
+	_looping = false;
 }
 
 bool Reactor::hasSocketHandlers()
 {
+	assertInLoopThread();
 	if (!_pollSet.empty())
 	{
 		for (auto& p : _handlers)
@@ -100,12 +124,16 @@ void Reactor::stop()
 	_stop = true;
 }
 
+Reactor* Reactor::getEventLoopOfCurrentThread()
+{
+	return t_loopInThisThread;
+}
+
 void Reactor::addEventHandler(const Socket& socket, const Poco::AbstractObserver& observer)
 {
+	assertInLoopThread();
 	NotifierPtr pNotifier = getNotifier(socket, true);
-
 	if (!pNotifier->hasObserver(observer)) pNotifier->addObserver(this, observer);
-
 	int mode = 0;
 	if (pNotifier->accepts(_pReadableNotification)) mode |= PollSet::POLL_READ;
 	if (pNotifier->accepts(_pWritableNotification)) mode |= PollSet::POLL_WRITE;
@@ -115,6 +143,7 @@ void Reactor::addEventHandler(const Socket& socket, const Poco::AbstractObserver
 
 bool Reactor::hasEventHandler(const Socket& socket, const Poco::AbstractObserver& observer)
 {
+	assertInLoopThread();
 	NotifierPtr pNotifier = getNotifier(socket);
 	if (!pNotifier) return false;
 	if (pNotifier->hasObserver(observer)) return true;
@@ -123,6 +152,7 @@ bool Reactor::hasEventHandler(const Socket& socket, const Poco::AbstractObserver
 
 Reactor::NotifierPtr Reactor::getNotifier(const Socket& socket, bool makeNew)
 {
+	assertInLoopThread();
 	EventHandlerMap::iterator it = _handlers.find(socket);
 	if (it != _handlers.end()) return it->second;
 	else if (makeNew) return (_handlers[socket] = new CoNotifier(socket));
@@ -132,6 +162,7 @@ Reactor::NotifierPtr Reactor::getNotifier(const Socket& socket, bool makeNew)
 
 void Reactor::removeEventHandler(const Socket& socket, const Poco::AbstractObserver& observer)
 {
+	assertInLoopThread();
 	NotifierPtr pNotifier = getNotifier(socket);
 	if (pNotifier && pNotifier->hasObserver(observer))
 	{
@@ -144,14 +175,20 @@ void Reactor::removeEventHandler(const Socket& socket, const Poco::AbstractObser
 	}
 }
 
-void Reactor::abortNotInLoopThread()
+bool Reactor::has(const Socket& socket) const
+{
+	assertInLoopThread();
+	return _pollSet.has(socket);
+}
+
+void Reactor::abortNotInLoopThread() const
 {
 	LOG_FATAL << "It is forbidden to run loop on threads other than event-loop "
 		"thread";
 	exit(1);
 }
 
-void Reactor::assertInLoopThread()
+void Reactor::assertInLoopThread() const
 {
 	if (!isInLoopThread())
 	{
@@ -167,11 +204,9 @@ void Reactor::runInLoop(const Func& cb)
 	}
 	else
 	{
-		_funcs.enqueue(cb);
-		_pollSet.postEvent();
+		queueInLoop(cb);
 	}
 }
-
 void Reactor::runInLoop(Func&& cb)
 {
 	if (isInLoopThread())
@@ -180,8 +215,24 @@ void Reactor::runInLoop(Func&& cb)
 	}
 	else
 	{
-		_funcs.enqueue(std::move(cb));
-		_pollSet.postEvent();
+		queueInLoop(std::move(cb));
+	}
+}
+
+void Reactor::queueInLoop(const Func& cb)
+{
+	_funcs.enqueue(cb);
+	if (!isInLoopThread() || !_looping)
+	{
+		wakeup();
+	}
+}
+void Reactor::queueInLoop(Func&& cb)
+{
+	_funcs.enqueue(std::move(cb));
+	if (!isInLoopThread() || !_looping)
+	{
+		wakeup();
 	}
 }
 
@@ -235,7 +286,7 @@ TimerId Reactor::runEvery(double interval, Func&& cb)
 
 void Reactor::invalidateTimer(TimerId id)
 {
-	if (!_stop && _timerQueue)
+	if (isRunning() && _timerQueue)
 		_timerQueue->invalidateTimer(id);
 }
 
@@ -248,9 +299,14 @@ void Reactor::doRunInLoopFuncs()
 	}
 }
 
-bool Reactor::has(const Socket& socket) const
+void Reactor::wakeup()
 {
-	return _pollSet.has(socket);
+	_pollSet.postEvent();
+}
+
+bool Reactor::isRunning()
+{
+	return _looping && (!_stop);
 }
 
 bool Reactor::isInLoopThread() const
