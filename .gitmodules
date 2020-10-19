@@ -1,0 +1,4 @@
+[submodule "Poco"]
+	path = Poco
+	url = https://github.com/linuxserverdev/poco.git
+
